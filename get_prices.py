@@ -138,7 +138,8 @@ def valuate_holdings(holdings_csv):
 # student loans part
 def get_interest(price, interest_rate): #get the current value of loans
     #(Current Principal Balance x Interest Rate) ÷ 365.25 (nelnet loans)
-    interest_rate = interest_rate/100
+    if interest_rate > 1:
+        interest_rate = interest_rate/100
     interest = (price * interest_rate) / 365.25
     return interest
 
