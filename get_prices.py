@@ -6,7 +6,7 @@ import os
 import json
 import time
 import pandas as pd
-
+import datetime
 
 def coin_get_current_prices(coin_list):
     symbols = coin_list #comma delimmited string of all
@@ -134,3 +134,19 @@ def valuate_holdings(holdings_csv):
     pd.options.mode.chained_assignment = None  # disable chaining warning
     prices['value'] = prices['price'] * prices['Quantity']
     return prices
+
+# student loans part
+def get_interest(price, interest_rate): #get the current value of loans
+    #(Current Principal Balance x Interest Rate) ÷ 365.25 (nelnet loans)
+    interest_rate = interest_rate/100
+    interest = (price * interest_rate) / 365.25
+    return interest
+
+
+def current_loans(recent_balance, payment_date_of_month, payment_amount, interest):
+    now = datetime.datetime.now().day
+    if now > payment_date_of_month:
+        balance = recent_balance - payment_amount
+    else:
+        balance = recent_balance + interest
+    return balance
