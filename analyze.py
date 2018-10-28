@@ -1,4 +1,6 @@
 from get_prices import valuate_holdings
+from get_prices import get_interest
+from get_prices import current_loans
 import matplotlib.pyplot as plt
 
 def main():
@@ -13,6 +15,10 @@ def main():
     plt.axis('equal')
     plt.text(-1.75, 1.0,format_total)
     plt.show()
+
+    interest_rate = get_interest(100,.06)
+    loan = current_loans(100,20,10,interest_rate)
+
 
 
 main()
